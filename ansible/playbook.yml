@@ -1,0 +1,7 @@
+---
+- name: Global install
+  hosts: localhost
+  roles:
+    - nginx
+    - wordpress
+    - supervisor

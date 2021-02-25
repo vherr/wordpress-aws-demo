@@ -1,0 +1,5 @@
+---
+db_user: word
+db_name: wordpressdb
+db_password: W0rdpr3ss
+db_host: aws_ecr_repo

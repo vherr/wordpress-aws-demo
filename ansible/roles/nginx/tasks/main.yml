@@ -1,0 +1,36 @@
+---
+- name: install ca-certs
+  apt:
+    name: ca-certificates
+    state: latest
+
+- name: install nginx
+  apt:
+    name: nginx
+    state: latest
+
+- name: install php fpm
+  apt:
+    name: php-fpm
+    state: latest
+
+- name: install php extention mysql
+  apt:
+    name: php-mysql
+    state: latest
+
+- name: Copy nginx conf
+  copy:
+    src: wordpress
+    dest: /etc/nginx/sites-available
+
+- name: Ensure default ngnix file is removed
+  file:
+    path: /etc/nginx/sites-enabled/default
+    state: absent
+
+- name: Enable site for wordpress
+  file:
+    src: /etc/nginx/sites-available/wordpress
+    dest: /etc/nginx/sites-enabled/wordpress
+    state: link

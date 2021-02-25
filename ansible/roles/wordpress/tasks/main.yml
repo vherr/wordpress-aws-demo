@@ -1,0 +1,20 @@
+- name: Download and untar latest wordpress
+  unarchive:
+    src: https://wordpress.org/latest.tar.gz
+    dest: /var/www
+    remote_src: yes
+
+- name: Fix permission for wordpress document root
+  file:
+    path: /var/www/wordpress
+    owner: www-data
+    group: www-data  
+    state: directory
+
+- name: Populate config file
+  template:
+    src: wp-config.php.j2
+    dest: /var/www/wordpress/wp-config.php
+    owner: www-data
+    group: www-data  
+
